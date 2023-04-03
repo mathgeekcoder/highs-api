@@ -1,0 +1,7 @@
+{
+  "name": "highs-example",
+  "version-string": "0",
+  "dependencies": [
+    "highs"
+  ]
+}

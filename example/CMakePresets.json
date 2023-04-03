@@ -1,0 +1,92 @@
+﻿{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "windows-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-windows-static",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_TOOLCHAIN_FILE": {
+          "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+          "type": "FILEPATH"
+        }
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-debug",
+      "inherits": "windows-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_FLAGS_DEBUG": "$env{CMAKE_CXX_FLAGS_DEBUG} /EHsc /DEBUG /Zi",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDebug"
+      }
+    },
+    {
+      "name": "windows-release",
+      "inherits": "windows-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS": "/DNDEBUG /GL /EHsc /Gy /Oi /Ot /Ob2 /O2",
+        "CMAKE_EXE_LINKER_FLAGS": "$env{CMAKE_EXE_LINKER_FLAGS} /LTCG",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
+      }
+    },
+    {
+      "name": "linux-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": {
+          "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+          "type": "FILEPATH"
+        }
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+
+    {
+      "name": "linux-clang-12",
+      "inherits": "linux-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_COMPILER": "clang++-12",
+        "VCPKG_TARGET_TRIPLET": "x64-linux-clang-12",
+        "VCPKG_OVERLAY_TRIPLETS": "vcpkg-clang/overlays"
+      }
+    },
+
+    {
+      "name": "linux-release",
+      "inherits": "linux-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "windows-release",
+      "configurePreset": "windows-release",
+      "configuration": "Release"
+    }
+  ]
+}
