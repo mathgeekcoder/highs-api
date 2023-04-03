@@ -11,7 +11,7 @@ To use the C++ wrapper, simply add it to your project.  You'll need HiGHS, which
 ## Building
 To build the example, follow these steps:
 
-1. Clone the repository: git clone https://github.com/mathgeekcoder/highs_api/repo.git
+1. Clone the repository: git clone https://github.com/mathgeekcoder/highs-api/repo.git
 2. Navigate to the repository directory: cd repo
 3. Generate the build files: `cmake --preset <linux-release, linux-clang-12, windows-release>`
 4. Build the project: `cmake --build out/build/<preset>`
