@@ -1,3 +1,7 @@
+# FYI: Use this API at your own peril
+**This is a nice example of using HiGHS via vcpkg.**  The C++ wrapper is somewhat cute, but I honestly don't recommend using it.  At some point I'll update this repo with a completely different API idea that I've been playing with, which is significantly more efficient - yet quite user friendly.
+
+
 # HiGHS C++ Wrapper
 This project is a *prototype* C++ wrapper around the HiGHS optimization solver. It attempts to provide a user-friendly interface to HiGHS, making it easier for developers to integrate the solver into their C++ projects.  It is nowhere near feature complete, but I think it has potential.
 
