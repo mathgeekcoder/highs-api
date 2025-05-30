@@ -1,5 +1,5 @@
 #include <iostream>
-#include "optimization_model.h"
+#include "highs-wrapper/optimization_model.h"
 
 //
 // min  x0 + x1 + 3

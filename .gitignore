@@ -33,5 +33,5 @@
 
 /.vs
 /out
-/example/.vs
-/example/out
+.vscode/
+
